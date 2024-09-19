@@ -67,3 +67,45 @@ class User(Base):
     @classmethod
     def find_by_id(cls, session, user_id):
         return session.query(cls).filter_by(id=user_id).first()
+    
+class Purchased(Base):
+    __tablename__ = 'purchased'
+    
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    product_name = Column(String, ForeignKey('products.product_name'), nullable=False )
+    price = Column(Float, nullable=False)
+    quantity = Column(Integer, nullable=False)
+    total_cost = Column(Float, nullable=False)
+
+    user = relationship("User", back_populates="purchases")
+
+    @classmethod
+    def create(cls, session, user_id, product_name, price, quantity):
+        total_cost = price * quantity
+        purchase = cls(user_id=user_id, product_name=product_name, price=price, quantity=quantity, total_cost=total_cost)
+        session.add(purchase)
+        session.commit()
+        return purchase
+
+    @classmethod
+    def delete(cls, session, purchase_id):
+        purchase = session.query(cls).filter_by(id=purchase_id).first()
+        if purchase:
+            session.delete(purchase)
+            session.commit()
+            return True
+        return False
+
+    @classmethod
+    def get_all(cls, session):
+        return session.query(cls).all()
+
+    @classmethod
+    def find_by_id(cls, session, purchase_id):
+        return session.query(cls).filter_by(id=purchase_id).first()
+
+def setup_db():
+    engine = create_engine('sqlite:///car_shop.db')
+    Base.metadata.create_all(engine)
+    return sessionmaker(bind=engine)()
