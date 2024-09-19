@@ -35,4 +35,35 @@ class Product(Base):
     def find_by_id(cls, session, product_id):
         return session.query(cls).filter_by(id=product_id).first()
     
+class User(Base):
+    __tablename__ = 'users'
     
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    contact = Column(String, nullable=False)
+
+    purchases = relationship("Purchased", back_populates="user")
+
+    @classmethod
+    def create(cls, session, name, contact):
+        user = cls(name=name, contact=contact)
+        session.add(user)
+        session.commit()
+        return user
+
+    @classmethod
+    def delete(cls, session, user_id):
+        user = session.query(cls).filter_by(id=user_id).first()
+        if user:
+            session.delete(user)
+            session.commit()
+            return True
+        return False
+
+    @classmethod
+    def get_all(cls, session):
+        return session.query(cls).all()
+
+    @classmethod
+    def find_by_id(cls, session, user_id):
+        return session.query(cls).filter_by(id=user_id).first()
