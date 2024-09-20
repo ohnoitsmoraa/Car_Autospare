@@ -1,4 +1,4 @@
-# Car Auto Shop 
+# Car Auto Shop
 
 This is a command-line interface (CLI) application for a car shop that manages products, users, and purchases. The application allows users to perform CRUD operations on products and users, as well as track purchases made by users.
 
@@ -13,6 +13,7 @@ This is a command-line interface (CLI) application for a car shop that manages p
 The application includes the following tables:
 
 ### 1. Products
+
 - **Table Name**: `products`
 - **Columns**:
   - `id`: Integer, primary key, auto-incremented identifier for each product.
@@ -21,6 +22,7 @@ The application includes the following tables:
   - `price`: Float, the price of the product.
 
 ### 2. Users
+
 - **Table Name**: `users`
 - **Columns**:
   - `id`: Integer, primary key, auto-incremented identifier for each user.
@@ -28,6 +30,7 @@ The application includes the following tables:
   - `contact`: String, the contact information of the user (e.g., phone number or email).
 
 ### 3. Purchased
+
 - **Table Name**: `purchased`
 - **Columns**:
   - `id`: Integer, primary key, auto-incremented identifier for each purchase.
@@ -38,21 +41,23 @@ The application includes the following tables:
   - `total_cost`: Float, the total cost of the purchase (calculated as `price * quantity`).
 
 ## Requirements
+
 You need to implement a Python CLI Application that meets the following requirements:
 
 - Python 3.8+
 - Pipenv
 
-
 ### ORM Requirements
+
 - The application must include a database created and modified with Python ORM methods that you write.
 
-    - The data model must include **at least 2** model classes.
-    - The data model must include **at least 1** one-to-many relationships.
-    - Property methods should be defined to add appropriate constraints to each model class.
-    - Each model class should include ORM methods (create, delete, get all, and find by id at minimum).
+  - The data model must include **at least 2** model classes.
+  - The data model must include **at least 1** one-to-many relationships.
+  - Property methods should be defined to add appropriate constraints to each model class.
+  - Each model class should include ORM methods (create, delete, get all, and find by id at minimum).
 
 ### CLI Requirements
+
 - The CLI must display menus with which a user may interact.
 - The CLI should use loops as needed to keep the user in the application until they choose to exit.
 - For **EACH** class in the data model, the CLI must include options: to create an object, delete an object, display all objects, view related objects, and find an object by attribute.
@@ -66,26 +71,30 @@ You need to implement a Python CLI Application that meets the following requirem
 You do **not** need to implement tests for `pytest`, although you should test your code thoroughly using your CLI. Try entering bad data when prompted for input, and confirm your application prints a useful error message.
 
 ## Installation
-1. Clone the repository:
+
+Clone the repository:
 
     `git clone git@github.com:ohnoitsmoraa/Car_Autospare.git`
 
-2. Open the directory:
+Open the directory:
 
     `cd [Folder Name]`
 
-3. To view the folder in your editor of choice:
+To view the folder in your editor of choice:
 
     `code .`
 
-4. To run the path / review functions passed, you use:
+To run the path / review functions passed, you use:
+
     `python [folder/file]`
 
-5. To install the virtual environment:
+To install the virtual environment:
 
-    `pipenv install(To install dependencies needed for running of the app)`
+    `pipenv install(To install dependencies needed for running of the app)
 
-    `pipenv shell(To start working in the virtual environment created)`
+    then
+
+    pipenv shell(To start working in the virtual environment created)`
 
 ### _Authors_
 
